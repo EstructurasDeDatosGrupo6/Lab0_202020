@@ -122,7 +122,7 @@ def main():
         inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
         if len(inputs)>0:
             if int(inputs[0])==1: #opcion 1
-                loadCSVFile("Data/test.csv", lista) #llamar funcion cargar datos
+                loadCSVFile("Data/MoviesCastingRaw-small.csv", lista) #llamar funcion cargar datos
                 print("Datos cargados, "+str(len(lista))+" elementos cargados")
             elif int(inputs[0])==2: #opcion 2
                 if len(lista)==0: #obtener la longitud de la lista
@@ -141,3 +141,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def encotrar_buenas_peliculas(vote_average: float, director_name:str)->int:
+    películas_buenas=0
+    promedio=0
+    lst=[]
+    lst2=[]
+    lista_director= loadCSVFile("Data/MoviesCastingRaw-small.csv", lst, sep=";")
+    lista_votos= loadCSVFile("Data/SmallMoviesDetailsCleaned.csv", lst2, sep=";")
+    director= countElementsByCriteria("director_name", )
+    votacion= countElementsFilteredByColumn("vote_count", )
