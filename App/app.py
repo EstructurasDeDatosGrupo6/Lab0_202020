@@ -29,7 +29,8 @@
 import config as cf
 import sys
 import csv
-from time import process_time 
+from time import process_time
+import pytest 
 
 def loadCSVFile (file, lst, sep=";"):
     """
@@ -82,7 +83,7 @@ def countElementsFilteredByColumn(criteria, column, lst):
             Critero sobre el cual se va a contar la cantidad de apariciones
         column
             Columna del arreglo sobre la cual se debe realizar el conteo
-        list
+        list 
             Lista en la cual se realizará el conteo, debe estar inicializada
     Return:
         counter :: int
@@ -105,7 +106,17 @@ def countElementsByCriteria(criteria, column, lst):
     """
     Retorna la cantidad de elementos que cumplen con un criterio para una columna dada
     """
-    return 0
+    """if len(lst)==0:
+        print("La lista está vacía")
+        return 0
+    else: 
+        counter = 0
+        for element in lst:
+            if criteria.lower() in element[column].lower()
+            counter+=1
+    return counter """
+    counter = countElementsFilteredByColumn(criteria, column, lst)
+    return counter 
 
 
 def main():
