@@ -72,6 +72,7 @@ def printMenu():
     print("2- Contar los elementos de la Lista")
     print("3- Contar elementos filtrados por palabra clave")
     print("4- Consultar elementos a partir de dos listas")
+    print("5- Consultar peliculas buenas")
     print("0- Salir")
 
 def countElementsFilteredByColumn(criteria, column, lst):
@@ -136,18 +137,32 @@ def main():
                 criteria =input('Ingrese el criterio de búsqueda\n')
                 counter=countElementsByCriteria(criteria,0,lista)
                 print("Coinciden ",counter," elementos con el crtierio: '", criteria ,"' (en construcción ...)")
+            elif int(inputs[0])==5: #opcion 5
+                vote_average= input("Ingrese el promedio de votación\n")
+                director_name=input("Ingrese el nombre del director\n")
+                resultado= encotrar_buenas_peliculas(vote_average, director_name)
+                print("El número de películas buenas es y el promedio de votos es:  ", resultado, )
             elif int(inputs[0])==0: #opcion 0, salir
                 sys.exit(0)
 
 if __name__ == "__main__":
     main()
 
-def encotrar_buenas_peliculas(vote_average: float, director_name:str)->int:
-    películas_buenas=0
+def encotrar_buenas_peliculas(vote_average: float, lista_votos: list)->int:
+    peliculas_buenas=0
     promedio=0
-    lst=[]
-    lst2=[]
-    lista_director= loadCSVFile("Data/MoviesCastingRaw-small.csv", lst, sep=";")
-    lista_votos= loadCSVFile("Data/SmallMoviesDetailsCleaned.csv", lst2, sep=";")
-    director= countElementsByCriteria("director_name", )
-    votacion= countElementsFilteredByColumn("vote_count", )
+    cont=0
+
+    for votos in lista_votos:
+        votos= lista_votos[votos][vote_average]
+        if votos>=vote_average:
+            peliculas_buenas+=1
+        promedio+=votos
+        cont+=1
+        promedio=promedio/cont
+    return (peliculas_buenas, promedio)
+"""def ranking_peliculas(lista:list)->list:
+    lista_ranking=[]
+
+    while len(lista_ranking)<10:
+        lista_ranking.append(movie_puntaje)"""    
